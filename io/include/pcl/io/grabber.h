@@ -60,7 +60,11 @@ namespace pcl
   {
     public:
       /** \brief virtual destructor. */
-      virtual inline ~Grabber () noexcept = default;
+      #if defined(_MSC_VER)
+        virtual inline ~Grabber () noexcept {}
+      #else
+        virtual inline ~Grabber () noexcept = default;
+      #endif
 
       /** \brief registers a callback function/method to a signal with the corresponding signature
         * \param[in] callback: the callback function/method
@@ -243,10 +247,14 @@ namespace pcl
       return nullptr;
     }
     using Signal = boost::signals2::signal<T>;
+    using Base = boost::signals2::signal_base;
     // no try_emplace due to dynamic memory allocation
     typename decltype(signals_)::const_iterator iterator;
-    std::tie (iterator, std::ignore) = signals_.emplace (typeid (T).name (),
-                                                         std::make_unique<Signal>());
+    // explicit pair and unique_ptr ctor added for MSVC, GCC 5.4
+    std::tie (iterator, std::ignore) = signals_.emplace (
+        std::pair<std::string, std::unique_ptr<Base>>(
+            typeid (T).name (),
+            std::unique_ptr<Base> (new Signal ())));
     return dynamic_cast<Signal*> (iterator->second.get ());
   }
 
