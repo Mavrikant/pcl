@@ -242,19 +242,30 @@ namespace pcl
   template<typename T> boost::signals2::signal<T>*
   Grabber::createSignal ()
   {
-    if (providesCallback<T> ())
+    using Signal = boost::signals2::signal<T>;
+    using Base = boost::signals2::signal_base;
+    struct DefferedPtr {
+      operator std::unique_ptr<Base>() const { return std::make_unique<Signal>(); }
+    };
+    // TODO: remove later for C++17 features: structured bindings and try_emplace
+    #ifdef __cpp_structured_bindings
+      const auto [iterator, success] =
+    #else
+      typename decltype(signals_)::const_iterator iterator;
+      bool success;
+      std::tie (iterator, success) =
+    #endif
+
+    #ifdef __cpp_lib_map_try_emplace
+      signals_.try_emplace (
+    #else
+      signals_.emplace (
+    #endif
+                         std::string (typeid (T).name ()), DefferedPtr ());
+    if (!success)
     {
       return nullptr;
     }
-    using Signal = boost::signals2::signal<T>;
-    using Base = boost::signals2::signal_base;
-    // no try_emplace due to dynamic memory allocation
-    typename decltype(signals_)::const_iterator iterator;
-    // explicit pair and unique_ptr ctor added for MSVC, GCC 5.4
-    std::tie (iterator, std::ignore) = signals_.emplace (
-        std::pair<std::string, std::unique_ptr<Base>>(
-            typeid (T).name (),
-            std::unique_ptr<Base> (new Signal ())));
     return dynamic_cast<Signal*> (iterator->second.get ());
   }
 
