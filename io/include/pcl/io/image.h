@@ -33,13 +33,14 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  *
  */
- 
+
 #pragma once
 
 #include <chrono>
 
 #include <pcl/pcl_config.h>
-#include <pcl/pcl_exports.h>
+#include <pcl/pcl_macros.h>
+#include <pcl/pcl_types.h>
 #include <pcl/io/boost.h>
 
 #include <pcl/io/image_metadata_wrapper.h>
@@ -47,7 +48,7 @@
 namespace pcl
 {
   namespace io
-  { 
+  {
 
     /**
     * @brief Image interface class providing an interface to fill a RGB or Grayscale image buffer.

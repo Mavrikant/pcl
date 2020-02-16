@@ -12,6 +12,7 @@
 // Include the correct Header path here
 #include <pcl/PCLHeader.h>
 #include <pcl/PCLPointField.h>
+#include <pcl/pcl_macros.h>
 
 namespace pcl
 {
@@ -122,7 +123,7 @@ namespace pcl
     }
     s << "is_dense: ";
     s << "  " << v.is_dense << std::endl;
-    
+
     return (s);
   }
 

@@ -44,6 +44,7 @@
 #include <boost/make_shared.hpp>
 #include <boost/shared_ptr.hpp>
 
+#include <pcl/point_traits.h>
 #include <pcl/pcl_types.h>
 
 
