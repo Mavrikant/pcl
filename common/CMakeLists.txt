@@ -56,6 +56,7 @@ set(incs
   include/pcl/pcl_base.h
   include/pcl/pcl_exports.h
   include/pcl/pcl_macros.h
+  include/pcl/pcl_types.h
   include/pcl/point_cloud.h
   include/pcl/point_traits.h
   include/pcl/point_types_conversion.h
