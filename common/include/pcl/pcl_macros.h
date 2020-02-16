@@ -65,15 +65,6 @@
 #include <cstdint>
 #include <iostream>
 
-#include <boost/cstdint.hpp>
-#include <boost/smart_ptr/shared_ptr.hpp>
-
-//Eigen has an enum that clashes with X11 Success define, which is ultimately included by pcl
-#ifdef Success
-  #undef Success
-#endif
-#include <Eigen/Core>
-
 #include <pcl/pcl_config.h>
 
 // It seems that __has_cpp_attribute doesn't work correctly

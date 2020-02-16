@@ -2,9 +2,9 @@
 
 #include <Eigen/Dense>
 #include <Eigen/StdVector>
-#include <boost/shared_ptr.hpp>
 
 #include <pcl/pcl_macros.h>
+#include <pcl/pcl_types.h>
 
 namespace pcl {
 namespace simulation {

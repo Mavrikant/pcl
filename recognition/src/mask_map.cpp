@@ -35,9 +35,11 @@
  *
  */
 
-#include <pcl/recognition/mask_map.h>
+#include <algorithm>
 
 #include <cassert>
+
+#include <pcl/recognition/mask_map.h>
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 pcl::MaskMap::MaskMap(const std::size_t width, const std::size_t height)
