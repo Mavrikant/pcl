@@ -59,6 +59,31 @@ namespace pcl
   class PCL_EXPORTS Grabber
   {
     public:
+      /**
+       * \brief Default ctor
+       */
+      Grabber() = default;
+
+      /**
+       * \brief No copy ctor since Grabber can't be copied
+       */
+      Grabber(const Grabber&) = delete;
+
+      /**
+       * \brief No copy assign operator since Grabber can't be copied
+       */
+      Grabber& operator=(const Grabber&) = delete;
+
+      /**
+       * \brief Move ctor
+       */
+      Grabber(Grabber&&) = default;
+
+      /**
+       * \brief Move assign operator
+       */
+      Grabber& operator=(Grabber&&) = default;
+
       /** \brief virtual destructor. */
       #if defined(_MSC_VER)
         virtual inline ~Grabber () noexcept {}
