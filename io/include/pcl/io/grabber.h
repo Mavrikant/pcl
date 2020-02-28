@@ -269,6 +269,11 @@ namespace pcl
   {
     using Signal = boost::signals2::signal<T>;
     using Base = boost::signals2::signal_base;
+    // DefferedPtr serves 2 purposes:
+    // * allows MSVC to copy it around, can't do that with unique_ptr<T>
+    // * performs dynamic allocation only when required. If the key is found, this
+    //   struct is a no-op, otherwise it allocates when implicit conversion operator
+    //   is called inside emplace/try_emplace
     struct DefferedPtr {
       operator std::unique_ptr<Base>() const { return std::make_unique<Signal>(); }
     };
