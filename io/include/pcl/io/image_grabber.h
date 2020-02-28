@@ -75,15 +75,6 @@ namespace pcl
      */
     ImageGrabberBase (const std::vector<std::string>& depth_image_files, float frames_per_second, bool repeat);
 
-    /** \brief Deleted copy constructor
-     */
-    ImageGrabberBase (const ImageGrabberBase&) = delete;
-
-    /** \brief Deleted copy operator
-     */
-    ImageGrabberBase&
-    operator = (const ImageGrabberBase &src) = delete;
-
     /** \brief Virtual destructor. */
     ~ImageGrabberBase () noexcept;
 

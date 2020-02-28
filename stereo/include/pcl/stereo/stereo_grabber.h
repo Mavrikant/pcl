@@ -72,15 +72,6 @@ public:
                     float frames_per_second,
                     bool repeat);
 
-  /** \brief Deleted copy constructor
-   */
-  StereoGrabberBase(const StereoGrabberBase& src) = delete;
-
-  /** \brief Deleted copy operator
-   */
-  StereoGrabberBase&
-  operator=(const StereoGrabberBase& src) = delete;
-
   /** \brief Virtual destructor. */
   ~StereoGrabberBase() noexcept;
 
