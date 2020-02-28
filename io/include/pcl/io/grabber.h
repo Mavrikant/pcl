@@ -206,7 +206,7 @@ namespace pcl
     const auto signal_it = signals_.find (typeid (T).name ());
     if (signal_it != signals_.end ())
     {
-      return (dynamic_cast<Signal*> (signal_it->second.get ()));
+      return (static_cast<Signal*> (signal_it->second.get ()));
     }
     return nullptr;
   }
@@ -291,7 +291,7 @@ namespace pcl
     {
       return nullptr;
     }
-    return dynamic_cast<Signal*> (iterator->second.get ());
+    return static_cast<Signal*> (iterator->second.get ());
   }
 
   template<typename T> boost::signals2::connection
