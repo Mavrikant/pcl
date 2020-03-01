@@ -73,9 +73,33 @@ namespace pcl
   using int64_t PCL_DEPRECATED("use std::int64_t instead of pcl::int64_t") = std::int64_t;
   using int_fast16_t PCL_DEPRECATED("use std::int_fast16_t instead of pcl::int_fast16_t") = std::int_fast16_t;
 
+// temporary macros for customization. Only use for PCL < 1.12
+// Aim is to remove macros and instead allow multiple index types to coexist together
+#ifndef PCL_INDEX_SIZE
+#if PCL_MINOR_VERSION <= 11
+#define PCL_INDEX_SIZE sizeof(int)
+#else
+#define PCL_INDEX_SIZE 32
+#endif  // PCL_MINOR_VERSION
+#endif  // PCL_INDEX_SIZE
+
+#ifndef PCL_INDEX_SIGNED
+#define PCL_INDEX_SIGNED true
+#endif
+
   namespace detail {
+    /**
+     * \brief int_type::type refers to an integral type that satisfies template parameters
+     * \tparam Bits number of bits in the integral type
+     * \tparam Signed signed or unsigned nature of the type
+     */
     template <std::size_t Bits, bool Signed = true>
     struct int_type { using type = void; };
+
+    /**
+     * \brief helper type to use for `int_type::type`
+     * \see int_type
+     */
     template <std::size_t Bits, bool Signed = true>
     using int_type_t = typename int_type<Bits, Signed>::type;
 
@@ -95,44 +119,30 @@ namespace pcl
     struct int_type<64, true> { using type = std::int64_t; };
     template <>
     struct int_type<64, false> { using type = std::uint64_t; };
-  }  // namespace detail
 
-// temporary macros for customization. Only use for PCL < 1.12
-// Aim is to remove macros and instead allow multiple index types to coexist together
-#ifndef PCL_INDEX_SIZE
-#if PCL_MINOR_VERSION <= 11
-#define PCL_INDEX_SIZE sizeof(int)
-#else
-#define PCL_INDEX_SIZE 32
-#endif  // PCL_MINOR_VERSION
-#endif  // PCL_INDEX_SIZE
+    /**
+     * \brief number of bits in PCL's index type
+     *
+     * For PCL 1.11, please use PCL_INDEX_SIZE to choose a size best suited for your needs.
+     * PCL 1.12 will come with default 32, along with client code compile time choice
+     *
+     * PCL 1.11 has a default size = sizeof(int)
+     */
+    constexpr short int index_type_size = PCL_INDEX_SIZE;
 
-#ifndef PCL_INDEX_SIGNED
-#define PCL_INDEX_SIGNED true
-#endif
-
-  /**
-   * \brief number of bits in PCL's index type
-   *
-   * For PCL 1.11, please use PCL_INDEX_SIZE to choose a size best suited for your needs.
-   * PCL 1.12 will come with default 32, along with client code compile time choice
-   *
-   * PCL 1.11 has a default size = sizeof(int)
-   */
-  constexpr short int index_type_size = PCL_INDEX_SIZE;
-
-  /**
-   * \brief signed/unsigned nature of PCL's index type
-   * For PCL 1.11, please use PCL_INDEX_SIGNED to choose a type best suited for your needs.
-   * PCL 1.12 will come with default signed, along with client code compile time choice
-   * Default: signed
-   */
-  constexpr bool index_type_signed = PCL_INDEX_SIGNED;
+    /**
+     * \brief signed/unsigned nature of PCL's index type
+     * For PCL 1.11, please use PCL_INDEX_SIGNED to choose a type best suited for your needs.
+     * PCL 1.12 will come with default signed, along with client code compile time choice
+     * Default: signed
+     */
+    constexpr bool index_type_signed = PCL_INDEX_SIGNED;
+}  // namespace detail
 
   /**
    * \brief Type used for indices in PCL
    *
    * Default index_t = int for PCL 1.11, std::int32_t for PCL >= 1.12
    */
-  using index_t = detail::int_type_t<index_type_size, index_type_signed>;
+  using index_t = detail::int_type_t<detail::index_type_size, detail::index_type_signed>;
 }  // namespace pcl
