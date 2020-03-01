@@ -38,10 +38,12 @@
 
 #pragma once
 
-#include <cstddef>
+#include <pcl/pcl_macros.h>
+
 #include <vector>
 
-#include <pcl/pcl_macros.h>
+#include <cassert>
+#include <cstddef>
 
 namespace pcl {
 namespace octree {
