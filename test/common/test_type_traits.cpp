@@ -36,7 +36,7 @@
  */
 
 
-#include <pcl/point_traits.h>
+#include <pcl/type_traits.h>
 #include <pcl/point_types.h>
 
 #include <gtest/gtest.h>

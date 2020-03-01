@@ -58,6 +58,7 @@ set(incs
   include/pcl/pcl_macros.h
   include/pcl/point_cloud.h
   include/pcl/point_traits.h
+  include/pcl/type_traits.h
   include/pcl/point_types_conversion.h
   include/pcl/point_representation.h
   include/pcl/point_types.h

@@ -47,7 +47,7 @@
 #include <pcl/PCLHeader.h>
 #include <pcl/exceptions.h>
 #include <pcl/pcl_macros.h>
-#include <pcl/point_traits.h>
+#include <pcl/type_traits.h>
 
 #include <pcl/make_shared.h>
 
