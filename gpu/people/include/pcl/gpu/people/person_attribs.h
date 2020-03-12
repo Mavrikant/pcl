@@ -5,7 +5,7 @@
 #include <iosfwd>
 #include <pcl/make_shared.h>
 
-#include <pcl/pcl_exports.h>
+#include <pcl/pcl_macros.h>
 
 namespace pcl
 {
