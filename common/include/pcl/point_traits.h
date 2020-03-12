@@ -38,14 +38,7 @@
 
 #pragma once
 
-#ifdef __GNUC__
-#pragma GCC system_header
-#endif
-
-#include "pcl/pcl_macros.h"
-
-#include <pcl/PCLPointField.h>
-#include <boost/mpl/assert.hpp>
+#include <pcl/PCLPointField.h>   // for PCLPointField
 
 // This is required for the workaround at line 109
 #ifdef _MSC_VER
@@ -53,7 +46,11 @@
 #include <Eigen/src/StlSupport/details.h>
 #endif
 
-#include <type_traits>
+#include <boost/mpl/assert.hpp>  // for BOOST_MPL_ASSERT_MSG
+
+#include <type_traits>  // for is_same
+
+#include <cstdint>  // for uint8_t, int8_t, ...
 
 namespace pcl
 {

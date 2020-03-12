@@ -39,12 +39,15 @@
 
 #pragma once
 
-#include <algorithm>
-#include <vector>
+#include <pcl/point_types.h>    // for PointXYZ, ...
+#include <pcl/make_shared.h>    // for shared_ptr
+#include <pcl/for_each_type.h>  // for for_each_type
 
-#include <pcl/point_types.h>
-#include <pcl/pcl_macros.h>
-#include <pcl/for_each_type.h>
+#include <algorithm>  // for copy_n
+#include <vector>     // for vector
+
+#include <cstddef>  // for size_t
+#include <cstdint>  // for uint8_t
 
 namespace pcl
 {

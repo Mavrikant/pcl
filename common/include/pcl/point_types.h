@@ -39,12 +39,21 @@
 
 #pragma once
 
-#include <pcl/pcl_macros.h>
-#include <bitset>
-#include <pcl/register_point_struct.h>
-#include <boost/mpl/contains.hpp>
-#include <boost/mpl/fold.hpp>
-#include <boost/mpl/vector.hpp>
+#include <pcl/PCLPointField.h>          // for PCLPointField
+#include <pcl/point_traits.h>           // for datatype
+#include <pcl/register_point_struct.h>  // for POINT_CLOUD_REGISTER...
+
+#include <boost/mpl/bool.hpp>           // for bool_
+#include <boost/mpl/contains.hpp>       // for contains
+#include <boost/mpl/fold.hpp>           // for fold
+#include <boost/mpl/logical.hpp>        // for and_, or_
+#include <boost/mpl/vector.hpp>         // for vector
+
+#include <bitset>                       // for bitset
+#include <string>                       // for string ==
+#include <type_traits>                  // for enable_if_t
+
+#include <cstdint>                      // for uint32_t
 
 /**
   * \file pcl/point_types.h
@@ -58,9 +67,6 @@
   #pragma warning(disable: 4201)
 #endif
 //#pragma warning(push, 1)
-#if defined __GNUC__
-#  pragma GCC system_header
-#endif
 
 /** @{*/
 namespace pcl
@@ -259,17 +265,17 @@ namespace pcl
     * \ingroup common
     */
   struct FPFHSignature33;
-  
+
   /** \brief Members: float vfh[308]
     * \ingroup common
     */
   struct VFHSignature308;
-  
+
   /** \brief Members: float grsd[21]
     * \ingroup common
     */
   struct GRSDSignature21;
-  
+
   /** \brief Members: float esf[640]
     * \ingroup common
     */
@@ -356,7 +362,8 @@ namespace pcl
 
 /** @} */
 
-#include <pcl/impl/point_types.hpp>  // Include struct definitions
+// Include struct definitions
+#include <pcl/impl/point_types.hpp>  // IWYU pragma: export
 
 // ==============================
 // =====POINT_CLOUD_REGISTER=====
@@ -705,7 +712,7 @@ POINT_CLOUD_REGISTER_POINT_STRUCT (pcl::_PointDEM,
 )
 POINT_CLOUD_REGISTER_POINT_WRAPPER(pcl::PointDEM, pcl::_PointDEM)
 
-namespace pcl 
+namespace pcl
 {
   // Allow float 'rgb' data to match to the newer uint32 'rgba' tag. This is so
   // you can load old 'rgb' PCD files into e.g. a PointCloud<PointXYZRGBA>.
@@ -906,7 +913,7 @@ namespace pcl
 } // namespace pcl
 
 // Not strictly required, merely to preserve API for PCL users < 1.4
-#include <pcl/common/point_tests.h>
+#include <pcl/common/point_tests.h>  // IWYU pragma: keep
 
 #if defined _MSC_VER
   #pragma warning(default: 4201)
