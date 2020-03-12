@@ -38,19 +38,19 @@
 
 #pragma once
 
-#ifdef __GNUC__
-#pragma GCC system_header 
-#endif
+#include <pcl/pcl_macros.h>   // for PCL_MAKE_ALIGNED_OPERATOR_NEW
+#include <pcl/make_shared.h>  // for shared_ptr
 
-#include <pcl/make_shared.h>
-#include <Eigen/StdVector>
-#include <Eigen/Geometry>
-#include <pcl/pcl_exports.h>
-#include <pcl/pcl_macros.h>
+#include <Eigen/Core>         // for aligned_allocator, Vector
+#include <Eigen/Geometry>     // for Affine3f
+
+#include <iosfwd>             // for ostream
+#include <limits>             // for numeric_limits
+#include <vector>             // for vector
 
 namespace pcl
 {
-  /** \brief Correspondence represents a match between two entities (e.g., points, descriptors, etc). This is 
+  /** \brief Correspondence represents a match between two entities (e.g., points, descriptors, etc). This is
     * represented via the indices of a \a source point and a \a target point, and the distance between them.
     *
     * \author Dirk Holz, Radu B. Rusu, Bastian Steder
@@ -68,14 +68,14 @@ namespace pcl
       float distance = std::numeric_limits<float>::max();
       float weight;
     };
-    
-    /** \brief Standard constructor. 
+
+    /** \brief Standard constructor.
       * Sets \ref index_query to 0, \ref index_match to -1, and \ref distance to FLT_MAX.
       */
     inline Correspondence () = default;
 
     /** \brief Constructor. */
-    inline Correspondence (int _index_query, int _index_match, float _distance) : 
+    inline Correspondence (int _index_query, int _index_match, float _distance) :
       index_query (_index_query), index_match (_index_match), distance (_distance)
     {}
 

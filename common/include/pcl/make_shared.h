@@ -38,14 +38,15 @@
 #pragma once
 
 
-#include <type_traits>
-#include <utility>
+#include <pcl/point_traits.h>     // for has_custom_allocator
 
-#include <boost/make_shared.hpp>
-#include <boost/shared_ptr.hpp>
+#include <Eigen/Core>             // for aligned_allocator
 
-#include <pcl/point_traits.h>
+#include <boost/make_shared.hpp>  // IWYU pragma: export
+#include <boost/shared_ptr.hpp>   // IWYU pragma: export
 
+#include <type_traits>            // for enable_if_t
+#include <utility>                // for forward
 
 namespace pcl
 {

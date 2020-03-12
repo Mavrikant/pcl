@@ -36,20 +36,16 @@
  *
  */
 
-#ifndef PCL_IMPL_POINT_TYPES_HPP_
-#define PCL_IMPL_POINT_TYPES_HPP_
+#pragma once
 
-#include <cstdint>
-#if defined __GNUC__
-#  pragma GCC system_header
-#endif
+#include <pcl/pcl_macros.h>  // for PCL_EXPORTS
 
-#include <algorithm>
-#include <ostream>
+#include <Eigen/Core>        // for MatrixMap
 
-#include <Eigen/Core>
+#include <algorithm>         // for copy_n, fill_n
+#include <ostream>           // for ostream, operator<<
 
-#include <pcl/pcl_macros.h>
+#include <cstdint>           // for uint8_t
 
 // Define all PCL point types
 #define PCL_POINT_TYPES         \
@@ -1829,4 +1825,3 @@ namespace pcl
   }
 } // End namespace
 
-#endif
