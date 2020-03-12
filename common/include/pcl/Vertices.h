@@ -1,10 +1,9 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <ostream>
-#include <boost/shared_ptr.hpp>
-#include <pcl/pcl_macros.h>
+#include <pcl/make_shared.h>  // for shared_ptr
+
+#include <vector>   // for vector
+#include <ostream>  // for ostream
 
 namespace pcl
 {
