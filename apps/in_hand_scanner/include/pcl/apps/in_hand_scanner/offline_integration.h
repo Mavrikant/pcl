@@ -40,7 +40,6 @@
 
 #pragma once
 
-#include <pcl/pcl_exports.h>
 #include <pcl/pcl_macros.h>
 #include <pcl/common/time.h>
 #include <pcl/features/integral_image_normal.h>
