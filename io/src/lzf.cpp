@@ -35,11 +35,13 @@
  *
  */
 
-#include <pcl/io/lzf.h>
-#include <cstring>
-#include <climits>
-#include <pcl/console/print.h>
-#include <cerrno>
+#include <pcl/console/print.h>  // for PCL_WARN
+#include <pcl/io/lzf.h>         // for lzfCompress
+
+#include <cerrno>   // for errno, EINCAL, E2BIG
+#include <climits>  // for USHRT_MAX
+#include <cstddef>  // for ptrdiff_t
+#include <cstring>  // for memset, memcpy
 
 /*
  * Size of hashtable is (1 << HLOG) * sizeof (char *)
