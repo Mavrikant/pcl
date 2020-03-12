@@ -1,9 +1,9 @@
 #pragma once
 
+#include <pcl/pcl_macros.h>  // for shared_ptr
+
 #include <string>   // for string
 #include <ostream>  // for ostream
-
-#include <pcl/pcl_macros.h>  // for shared_ptr
 
 namespace pcl
 {

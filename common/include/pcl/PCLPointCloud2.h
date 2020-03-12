@@ -1,12 +1,12 @@
 #pragma once
 
-#include <ostream>
-#include <vector>
-
-#include <boost/predef/other/endian.h>
-
 #include <pcl/PCLHeader.h>
 #include <pcl/PCLPointField.h>
+
+#include <boost/predef/other/endian.h>  // for BOOST_ENDIAN_{X}_BYTE
+
+#include <ostream>  // for ostream
+#include <vector>   // for vector
 
 namespace pcl
 {
