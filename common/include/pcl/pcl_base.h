@@ -38,6 +38,7 @@
 
 #pragma once
 
+#include <pcl/pcl_config.h>      // for PCL_NO_PRECOMPILE
 #include <pcl/pcl_macros.h>      // for PCL_ERROR
 #include <pcl/point_cloud.h>     // or PointCloud
 #include <pcl/PointIndices.h>    // for PointIndices
